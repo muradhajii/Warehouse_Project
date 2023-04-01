@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Warehouse_ProjectModelStoreContainer" CdmEntityContainer="Warehouse_ProjectEntities1">
+    <EntitySetMapping Name="category">
+      <EntityTypeMapping TypeName="Warehouse_ProjectModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="cname" ColumnName="cname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customer">
+      <EntityTypeMapping TypeName="Warehouse_ProjectModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="c_name" ColumnName="c_name" />
+          <ScalarProperty Name="c_sname" ColumnName="c_sname" />
+          <ScalarProperty Name="city" ColumnName="city" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="goods">
+      <EntityTypeMapping TypeName="Warehouse_ProjectModel.goods">
+        <MappingFragment StoreEntitySet="goods">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="g_name" ColumnName="g_name" />
+          <ScalarProperty Name="brand" ColumnName="brand" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="category" ColumnName="category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sale">
+      <EntityTypeMapping TypeName="Warehouse_ProjectModel.sale">
+        <MappingFragment StoreEntitySet="sale">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="s_good" ColumnName="s_good" />
+          <ScalarProperty Name="s_customer" ColumnName="s_customer" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="admin">
+      <EntityTypeMapping TypeName="Warehouse_ProjectModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="a_id" ColumnName="a_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

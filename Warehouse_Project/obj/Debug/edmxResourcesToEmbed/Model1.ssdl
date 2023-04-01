@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Warehouse_ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="a_id" />
+    </Key>
+    <Property Name="a_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="20" />
+    <Property Name="password" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cname" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="c_name" Type="varchar" MaxLength="30" />
+    <Property Name="c_sname" Type="varchar" MaxLength="30" />
+    <Property Name="city" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="goods">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="g_name" Type="varchar" MaxLength="50" />
+    <Property Name="brand" Type="varchar" MaxLength="50" />
+    <Property Name="stock" Type="int" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="status" Type="bit" />
+    <Property Name="category" Type="int" />
+  </EntityType>
+  <EntityType Name="sale">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="s_good" Type="int" />
+    <Property Name="s_customer" Type="int" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="date" Type="smalldatetime" />
+  </EntityType>
+  <Association Name="FK_goods_category">
+    <End Role="category" Type="Self.category" Multiplicity="0..1" />
+    <End Role="goods" Type="Self.goods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="goods">
+        <PropertyRef Name="category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sale_customer">
+    <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+    <End Role="sale" Type="Self.sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="sale">
+        <PropertyRef Name="s_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sale_goods">
+    <End Role="goods" Type="Self.goods" Multiplicity="0..1" />
+    <End Role="sale" Type="Self.sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="sale">
+        <PropertyRef Name="s_good" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Warehouse_ProjectModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="goods" EntityType="Self.goods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sale" EntityType="Self.sale" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_goods_category" Association="Self.FK_goods_category">
+      <End Role="category" EntitySet="category" />
+      <End Role="goods" EntitySet="goods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sale_customer" Association="Self.FK_sale_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="sale" EntitySet="sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sale_goods" Association="Self.FK_sale_goods">
+      <End Role="goods" EntitySet="goods" />
+      <End Role="sale" EntitySet="sale" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
